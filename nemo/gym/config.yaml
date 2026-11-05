@@ -1,0 +1,20 @@
+# Gym servers for the deadline market: the resources server that scores replies,
+# and the stock simple agent that sends each prompt to the policy and asks the
+# resources server to verify the reply.
+deadline_offer_resources_server:
+  resources_servers:
+    deadline_offer:
+      entrypoint: app.py
+      domain: other
+      verified: false
+
+deadline_offer_simple_agent:
+  responses_api_agents:
+    simple_agent:
+      entrypoint: app.py
+      resources_server:
+        type: resources_servers
+        name: deadline_offer_resources_server
+      model_server:
+        type: responses_api_models
+        name: policy_model

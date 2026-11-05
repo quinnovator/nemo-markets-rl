@@ -1,0 +1,9 @@
+{
+  "n_tasks": 300,
+  "n_rollouts": 2400,
+  "mean_reward": 0.895640569970552,
+  "ev_capture": 0.7806236947165472,
+  "valid_rate": 1,
+  "negative_ev_count": 0,
+  "walk_count": 0
+}

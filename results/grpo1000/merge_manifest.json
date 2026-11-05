@@ -1,0 +1,6 @@
+{
+  "base_snapshot": "/root/.cache/huggingface/hub/models--nvidia--NVIDIA-Nemotron-3-Nano-4B-BF16/snapshots/dfaf35de3e30f1867dd8dbc38a7fc9fb52d3914f",
+  "adapter": "/vol/nemotron4b-grpo1000-002/checkpoints/step_1000/policy/weights/model",
+  "targets_merged": 71,
+  "merge_precision": "FP32 accumulation, cast back to base dtype"
+}

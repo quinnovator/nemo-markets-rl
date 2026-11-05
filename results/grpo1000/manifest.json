@@ -1,0 +1,69 @@
+{
+  "model": "nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16",
+  "steps": 1000,
+  "seed": 3407,
+  "performance_variant": "resident-fast-clean",
+  "schedule_steps": 1000,
+  "performance_settings": {
+    "resident_models": true,
+    "cuda_graphs": true,
+    "force_on_policy_ratio": true,
+    "activation_checkpointing": false,
+    "skip_device_mover_cleanup": true
+  },
+  "source_data_sha256": {
+    "train": "0518940f8ab8beb53df8f8f216a9034e59c2fd5219b6bf8cbf78554d36a546fa",
+    "validation": "3b7fa1a7aab93032837cd582ce0ba7fd950efd93c58f163dd296c494876a0f95",
+    "test": "7a5be0b08a898e7ee29a7ec7125c93ebbb15f01834fc2a0825a1872eacd9c39c",
+    "shift": "e2ffe3ce1f2158776355ebc92d7b3c8e0bb10205a7d4a216dafe85934142c589"
+  },
+  "market_sha256": "a28793455e5ce903b8963aeca586219585d37627607e6f42379a6b8a85e43201",
+  "port_source_sha256": {
+    "export.py": "04d0a266c876d44d7d73a71882cea603cfe9acfbe318b11275183e716ef84b39",
+    "audit_weights.py": "c270659497722274109de707252be81f5de07a5258f7319d32ed98ac7e744ef4",
+    "gym_app.py": "b2340fd1aa7b30e6d1a24c65821d1e9c0c033d3b5975a030147b9451379ea16f",
+    "performance.py": "14e5a624f0202e02f48acbfa5f5ae15784760bd06cf0beafff5348f3b4b30dac",
+    "collect.py": "74329655220870a80f3dba16a46cdffa16edf1ce851e9c57e4fb89562e970c90",
+    "prepare.py": "a6ea88c81a7d3ad138fec974e06c6b5c95ff8239c8c6044ee4ead2e615b24b1c",
+    "deadline_experiment.py": "60a1ca9e2d47523575354d1a40a3c21ce13d974782a4cb93637b03340d8f7216",
+    "benchmark.py": "a6c08cd4df11130c3abb88a3ad0ccd2065757250bc6ddfdf567c8937c5ac62f6",
+    "verify_loss.py": "3e4df1b43b7b986c76a5958d0e5300d61039ba67d26b770e74dd3bbd87a38ea6",
+    "launch.py": "323b7801109ae49227ad26c04305d755358f0164c30c3fa8900d91b9bed7ecba",
+    "audit_policy.py": "7b7f38cec3d61b633b09a54d8c96ba257b2c29e61c9753ded6c6512b938b0f3f",
+    "evaluate.py": "5ce330611033e5bd9e2ea5b0cb28343722c1bc59b5b855b6ec8273d1db06cf5d"
+  },
+  "matched": {
+    "prompts_per_step": 8,
+    "responses_per_prompt": 8,
+    "max_completion_length": 128,
+    "lora_rank": 32,
+    "lora_alpha": 64,
+    "lora_targets": [
+      "down_proj",
+      "in_proj",
+      "k_proj",
+      "o_proj",
+      "q_proj",
+      "up_proj",
+      "v_proj"
+    ],
+    "learning_rate": 5e-06,
+    "warmup_steps": 10,
+    "schedule": "cosine",
+    "weight_decay": 0.1,
+    "max_grad_norm": 0.1,
+    "loss": "Dr. GRPO: sum of token losses / (responses * 128)",
+    "kl": 0,
+    "reward_std_scaling": false,
+    "leave_one_out_baseline": false
+  },
+  "differences": [
+    "NeMo Automodel AdamW uses full-precision optimizer states; TRL used AdamW8bit.",
+    "LoRA uses the same Kaiming-uniform/zero initialization rule, but RNG consumption and shuffling differ.",
+    "NeMo refits merged weights into vLLM; the original generated with a native LoRA adapter.",
+    "Pinned NVIDIA container has different Torch, Transformers, and vLLM versions."
+  ],
+  "nemo_rl_commit": "19244a0949fb363326f71675223da75e09d14866",
+  "submodules": "24b47e856263d313b942f0ed666c63fff83306b4 3rdparty/Automodel-workspace/Automodel (24b47e85)\n d67ad6611cfe21dbaeb301c59e59df32ce22ec50 3rdparty/Gym-workspace/Gym (d67ad66)\n 151168f36372132c8fb8f926501f573019feb967 3rdparty/Megatron-Bridge-workspace/Megatron-Bridge (heads/main-518-g151168f)",
+  "gpu": "name, driver_version, memory.total [MiB]\nNVIDIA H100 80GB HBM3, 610.57.04, 81559 MiB"
+}
